@@ -19,3 +19,6 @@ use App\Http\Controllers\BaseController;
 // });
 
 Route::get('/home', [Basecontroller::class,'home'])->name('home');
+Route::get('/specialOffer', [Basecontroller::class,'specialOffer'])->name('specialOffer');
+Route::get('/delivery', [Basecontroller::class,'delivery'])->name('delivery');
+Route::get('/contact-us', [Basecontroller::class,'contact'])->name('contact');
