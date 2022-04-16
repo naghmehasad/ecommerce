@@ -22,3 +22,5 @@ Route::get('/home', [Basecontroller::class,'home'])->name('home');
 Route::get('/specialOffer', [Basecontroller::class,'specialOffer'])->name('specialOffer');
 Route::get('/delivery', [Basecontroller::class,'delivery'])->name('delivery');
 Route::get('/contact-us', [Basecontroller::class,'contact'])->name('contact');
+Route::get('/cart', [Basecontroller::class,'cart'])->name('cart');
+Route::get('/productView', [Basecontroller::class,'productView'])->name('productView');
