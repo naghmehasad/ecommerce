@@ -28,3 +28,4 @@ Route::get('/cart', [Basecontroller::class,'cart'])->name('cart');
 Route::get('/productView', [Basecontroller::class,'productView'])->name('productView');
 
 Route::get('/admin/login', [AdminController::class,'login'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class,'makeLogin'])->name('admin.makeLogin');
