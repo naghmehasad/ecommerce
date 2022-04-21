@@ -33,5 +33,10 @@ public function dashboard(){
     return view('admin.dashboard');
 }
 
+public function logout(){
+    Auth::logout();
+    return redirect()->route('admin.login');
+}
+
 
 }
