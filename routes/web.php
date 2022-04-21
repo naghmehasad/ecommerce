@@ -30,5 +30,7 @@ Route::get('/productView', [Basecontroller::class,'productView'])->name('product
 Route::get('/admin/login', [AdminController::class,'login'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class,'makeLogin'])->name('admin.makeLogin');
 
-Route::get('/admin/dashboard', [AdminController::class,'dashboard'])->name('admin.dashboard');
-Route::get('/admin/logout', [AdminController::class,'logout'])->name('admin.logout');
+Route::group(['middleware' =>'auth'],function(){ 
+	Route::get('/admin/dashboard', [AdminController::class,'dashboard'])->name('admin.dashboard');
+	Route::get('/admin/logout', [AdminController::class,'logout'])->name('admin.logout');
+});
