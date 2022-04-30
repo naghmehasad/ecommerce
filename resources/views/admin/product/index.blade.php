@@ -9,6 +9,7 @@
 			<th>Product Name</th>
 			<th>Category Name</th>
 			<th>Price</th>
+			<th>Extra Details</th>
 			<th>Image</th>
 			<th>Action</th>
 		</tr>
@@ -24,6 +25,7 @@
 				@endif
 			</td>
 			<td>{{$product->price}}</td>
+			<td><button><a href="{{route('product.extraDetails',$product->id)}}">Add</a></button></td>
             <td><img style="height:80px;width:80px;" src="{{asset('uploads/'.$product->image)}}"></td>
 			<td>
 				<a href="{{route('product.edit',$product->id)}}" style="font-size:17px;padding:5px;"><i class="fa fa-edit"></i></a>
