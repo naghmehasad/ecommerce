@@ -28,15 +28,23 @@
 			<div class="span6">
 				<h3>{{$product->ProductDetail->title}}</h3>
 				<hr class="soft"/>
-				<form class="form-horizontal qtyFrm">
+				
 				  <div class="control-group">
 					<label class="control-label"><span>${{$product->price}}</span></label>
 					<div class="controls">
-					<input type="number" class="span1" placeholder="Qty."/>
-					  <button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
-					</div>
+					<form method="post" action="{{route('cart.store')}}">
+							@csrf
+					<input type="number" name="qty" class="span1" placeholder="Qty."/>
+					<input type="hidden" value="{{$product->id}}" name="product_id" readonly>
+					@if(Auth::user())
+					<button type="submit" class="btn btn-large btn-primary pull-right"> Add to cart <i class=" icon-shopping-cart"></i></button>
+					@else
+					<button class="btn btn-large btn-primary pull-right"><a style="color: #fff;text-decoration: none;" href="{{route('user_login')}}"> Add to cart <i class=" icon-shopping-cart"></i></a></button>
+					@endif	
+				    </form>
+				</div>
 				  </div>
-				</form>
+				
 				
 				<hr class="soft"/>
 				<h4>{{$product->ProductDetail->total_items}} items in   stock</h4>
