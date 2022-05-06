@@ -5,6 +5,7 @@ use App\Http\Controllers\BaseController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,5 +59,8 @@ Route::group(['middleware' =>'auth'],function(){
 	Route::post('/product/delete', [ProductController::class,'destroy'])->name('product.delete');
 	Route::get('/product/details/{id}', [ProductController::class,'extraDetails'])->name('product.extraDetails');
 	Route::post('/product/details/{id}', [ProductController::class,'extraDetailsStore'])->name('product.extraDetailsStore');
+
+	Route::get('/admin/users', [UserController::class,'index'])->name('admin.users');
+	Route::post('/admin/delete', [UserController::class,'delete'])->name('user.delete');
 
 });
