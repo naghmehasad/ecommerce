@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\Cart;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -29,7 +30,13 @@ class BaseController extends Controller
     }
 
     public function cart() {
-         return view('front.cart');
+        $carts = [];
+    if (Auth::user()) {
+        $user_id = Auth::user()->id;
+        $carts = Cart::where('user_id',$user_id)->get();
+    }
+    
+        return view('front.cart',compact('carts'));
      }
      
      public function productView(Request $request) {

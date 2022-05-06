@@ -18,4 +18,11 @@ class CartController extends Controller
         Cart::create($data);
         return redirect()->route('cart');
     }
+
+    public function destroy(Cart $cart,Request $request)
+    {
+        $id = $request->id;
+        $cart = Cart::where('id',$id)->first();
+        $cart->delete();
+    }
 }
