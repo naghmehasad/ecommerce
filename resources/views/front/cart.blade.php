@@ -35,7 +35,8 @@
 					<button class="btn btn-danger btn_close" data-id="{{$cart->id}}" type="button"><i class="icon-remove icon-white"></i></button>				
 					</div>
 				  </td>
-				  <td><input type="checkbox" name="select_product[]" cart-id="{{$cart->id}}"></td>
+				  <td><input type="checkbox" name="select_product[]" 
+                      cart-id="{{$cart->id}}" ></td>
                   <td>${{$cart->product->price}}</td>
                 </tr>
 				@endforeach
@@ -46,7 +47,7 @@
 				 <tr>
                   <td colspan="3" style="text-align:right"></td>
 				  <td>Pay with eway<input type="checkbox" name="eway" style="margin-left: 12px;"></td>
-                  <td class="label label-important" style="display:block;cursor:pointer;"> <strong> Buy </strong></td>
+                  <td class="label label-important buy_product" style="display:block;cursor:pointer;"> <strong> Buy </strong></td>
                 </tr>
 				</tbody>
             </table>
@@ -75,6 +76,27 @@
     }
    });
 
-
+   $('.buy_product').on('click',function(){
+    var cart_id = [];
+    jQuery('input[name="select_product[]"]:checkbox:checked').each(function(i){
+        cart_id[i] = $(this).attr('cart-id');
+    });
+    
+    if(cart_id.length == 0){
+      alert('Please select atleast one product.');
+    }else{
+      $.ajax({
+        url:'{{route("product.booking")}}',
+        type:'post',
+        data:{  
+          cart_id:cart_id,
+          _token:'{{csrf_token()}}'
+        },
+        success: function(data){
+              location.reload();
+            }
+      });
+    }
+  });
 </script>
 @endpush
